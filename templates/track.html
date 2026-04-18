@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard - Vaidya</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        header button {
+            background-color: #45a049;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        header button:hover {
+            background-color: #3a873e;
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .appointment,
+        .campaign {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+
+        .appointment:hover,
+        .campaign:hover {
+            transform: translateX(5px);
+        }
+
+        .meet-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #45a049;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .meet-link:hover {
+            background-color: #3a873e;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .no-link {
+            font-style: italic;
+            color: #ddd;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 0;
+        }
+
+        .appointment strong,
+        .campaign strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        @media(max-width: 800px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Vaidya - Track</h1>
+        <!-- <button onclick="logout()">Log Out</button> -->
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>My Appointments</h2>
+
+            {% if appointments_with_doctors %}
+            {% for item in appointments_with_doctors %}
+            <div class="appointment">
+                <!-- {{ item.appointment.reason }} - {{ item.doctor.full_name }} -->
+                <strong>Doctor:</strong> {{item.doctor.full_name}}<br>
+                <strong>Reason:</strong> {{item.appointment.reason}}<br>
+                <strong>Date & Time:</strong> {{ item.appointment.schedule_date }}<br>
+                <!-- <strong>Time:</strong> {{ appointment.scheduled_time|time:"h:i A" }}<br> -->
+
+                {% if item.appointment.gmeet_link %}
+                <a class="meet-link" href="{{ item.appointment.gmeet_link }}" target="_blank">Join Google Meet</a>
+                {% else %}
+                <span class="no-link">Awaiting Google Meet link</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No appointments yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h2>My Campaigns</h2>
+
+            {% if campaigns %}
+            {% for camp in campaigns %}
+            <div class="campaign">
+                <strong>{{ camp.title }}</strong><br>
+                <strong>Date:</strong> {{ camp.date|date:"Y-m-d" }}
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No campaigns registered.</p>
+            {% endif %}
+        </div>
+    </main>
+
+
+    <script>
+        function logout() {
+            if (confirm("Are you sure you want to log out?")) {
+                alert("Logged out successfully!");
+                window.location.href = "login.html"; // Change to your login page
+            }
+        }
+    </script>
+
+</body>
+
+</html>

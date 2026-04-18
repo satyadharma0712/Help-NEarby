@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    nav {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    nav h1 {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav ul li:hover {
+      color: #ffe082;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      background: url('https://media.istockphoto.com/id/808157766/photo/system-security-specialist-working-at-system-control-center-room-is-full-of-screens-displaying.jpg?s=612x612&w=0&k=20&c=S4lA-g81V0eYG1x6CI7xd8IEWcjaVq_ZCrEXkcrHd9U=') center/cover no-repeat;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .content h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .content p {
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>Admin Dashboard</h1>
+    <ul>
+      <a href="usermanagement/"><li>User Management</li></a>
+      <a href="adminappoint/"><li>Appointments</li></a>
+      <a href="admincampaign/"><li>Campaigns</li></a>
+      <a href="complain/"><li>Complaints</li></a>
+      <a href="adminUser/"><li>Users</li></a>
+      <a href="../logout/"><li>Log Out</li></a>
+    </ul>
+  </nav>
+
+  <div class="main">
+    <div class="overlay"></div>
+    <div class="content fade-in">
+      <h2>Welcome, Admin</h2>
+      <p>
+        Monitor and control all activities from one place.  
+        Keep track of users, manage appointments, oversee campaigns,  
+        address complaints, and analyze website growth — all at your fingertips.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

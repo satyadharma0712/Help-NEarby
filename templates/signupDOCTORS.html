@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Signup - Vaidya</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 450px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #444;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #45a049;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #3d8b3d;
+    }
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      width: 300px;
+    }
+    .popup-content h3 {
+      margin-bottom: 15px;
+    }
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Doctor Signup</h2>
+  <form id="doctorForm" method="post" action="">
+    {%csrf_token%}
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <label for="specialization">Specialization</label>
+    <input type="text" name="specialisation" id="specialization" placeholder="e.g., Cardiologist" required>
+
+    <label for="experience">Experience (in years)</label>
+    <input type="number" name="experience" id="experience" min="0" required>
+
+    <label for="ngo">NGO</label>
+    <input type="text" name="ngo" id="ngo" placeholder="Enter NGO name" required>
+
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="successPopup">
+  <div class="popup-content">
+    <span class="close" id="closePopup">&times;</span>
+    <h3>Doctor Signed Up Successfully</h3>
+    <p>Your details have been submitted.</p>
+  </div>
+</div>
+
+<!-- <script>
+  const doctorForm = document.getElementById("doctorForm");
+  const popup = document.getElementById("successPopup");
+  const closePopup = document.getElementById("closePopup");
+
+  doctorForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    popup.style.display = "flex";
+  });
+
+  closePopup.addEventListener("click", function() {
+    popup.style.display = "none";
+    doctorForm.reset();
+  });
+</script> -->
+
+</body>
+</html>

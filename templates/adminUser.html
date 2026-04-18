@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - User Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #2a5298;
+      color: white;
+      font-size: 18px;
+    }
+
+    tr:hover {
+      background: #f1f1f1;
+    }
+
+    button {
+      padding: 8px 15px;
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <header>Admin - User Management</header>
+  <div class="container">
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search user by name..." onkeyup="searchUser()">
+    </div>
+
+    <!-- Users Table -->
+    <table id="usersTable">
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>Aditya Verma</td>
+        <td>Doctor</td>
+        <td><button onclick="cancelUser(this)">Cancel Registration</button></td>
+      </tr>
+      <tr>
+        <td>Priya Singh</td>
+        <td>NGO Admin</td>
+        <td><button onclick="cancelUser(this)">Cancel Registration</button></td>
+      </tr>
+      <tr>
+        <td>Rohit Sharma</td>
+        <td>Patient</td>
+        <td><button onclick="cancelUser(this)">Cancel Registration</button></td>
+      </tr>
+      <tr>
+        <td>Anjali Mehta</td>
+        <td>Doctor</td>
+        <td><button onclick="cancelUser(this)">Cancel Registration</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Search function
+    function searchUser() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let rows = document.getElementById("usersTable").getElementsByTagName("tr");
+
+      for (let i = 1; i < rows.length; i++) {
+        let nameCell = rows[i].getElementsByTagName("td")[0];
+        if (nameCell) {
+          let name = nameCell.textContent.toLowerCase();
+          rows[i].style.display = name.includes(input) ? "" : "none";
+        }
+      }
+    }
+
+    // Cancel user function
+    function cancelUser(button) {
+      let row = button.parentElement.parentElement;
+      let userName = row.getElementsByTagName("td")[0].textContent;
+      if (confirm("Are you sure you want to cancel registration of " + userName + "?")) {
+        row.remove();
+        alert(userName + "'s registration has been cancelled.");
+      }
+    }
+  </script>
+</body>
+</html>

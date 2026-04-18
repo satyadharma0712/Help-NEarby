@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Report Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+      header {
+        padding: 20px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .total-appointments {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .appointment {
+        background: rgba(255, 255, 255, 0.15);
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 10px;
+      }
+      .appointment h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+      .detail {
+        margin-top: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+      }
+      .diagnosis {
+        margin-top: 10px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .diagnosis img {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      .meet-link {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .meet-link input {
+        flex: 1;
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+      }
+      .meet-link button {
+        padding: 8px 12px;
+        background: #00c6ff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .meet-link button:disabled {
+        background: gray;
+        cursor: not-allowed;
+      }
+      .check-btn {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #ffc107;
+        border: none;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .check-btn.completed {
+        background: #28a745;
+        color: white;
+        cursor: default;
+      }
+      .schedule-section {
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Doctor - Appointment & Reports</header>
+
+    <div class="container">
+      <div class="total-appointments">
+        Total Appointments:
+        <span id="totalCount">{{ appointments.count }}</span>
+      </div>
+
+      {% for appointment in appointments %}
+      <div class="appointment" data-id="{{ appointment.id }}">
+        <h3>{{ appointment.name }}</h3>
+        <div class="detail">
+          <strong>Booked On:</strong> {{ appointment.created_at|date:"d M Y" }}
+        </div>
+        <div class="detail">
+          <strong>Mobile:</strong> {{ appointment.phone }}
+        </div>
+
+        <div class="detail scheduled-time" style="display: none">
+          <strong>Scheduled:</strong> <span></span>
+        </div>
+
+        <div class="detail">
+          <strong>Health Issue:</strong> {{ appointment.reason }}
+        </div>
+
+        <div class="diagnosis">
+          Diagnosis Report:<br />
+          {% if appointment.diagnosis_report %}
+          <a href="{{ appointment.diagnosis_report.url }}" target="_blank">
+            <img
+              src="{{ appointment.diagnosis_report.url }}"
+              alt="Diagnosis Report"
+              width="400"
+              height="200"
+            />
+          </a>
+          {% else %}
+          <em>No report uploaded</em>
+          {% endif %}
+        </div>
+
+        <!-- ✅ FORM FOR GOOGLE MEET LINK -->
+        <form method="post" class="meet-link">
+          {% csrf_token %}
+          <input type="hidden" name="booking_id" value="{{ appointment.id }}" />
+          <div class="schedule-section">
+            <label><strong>Set Schedule:</strong></label>
+            <input type="datetime-local" class="schedule-input" name="schedule_date"/>
+            <!-- <button class="set-schedule-btn">Confirm</button> -->
+          </div>
+          <input
+            type="url"
+            name="gmeet_link"
+            placeholder="Enter Google Meet Link"
+            value="{{ appointment.gmeet_link|default_if_none:'' }}"
+            required
+          />
+          <button type="submit" class="send-btn">Send Link</button>
+        </form>
+
+        <!-- {% if appointment.gmeet_link %}
+        <div class="detail">
+            <strong>Current Meet Link:</strong> 
+            <a href="{{ appointment.gmeet_link }}" target="_blank">{{ appointment.gmeet_link }}</a>
+        </div>
+        {% endif %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <button type="submit" class="check-btn">Mark as Checked</button>
+        </form> -->
+      </div>
+      {% empty %}
+      <p>No appointments yet.</p>
+      {% endfor %}
+    </div>
+
+    <!-- <script>
+    const totalCountElem = document.getElementById("totalCount");
+    let totalAppointments = document.querySelectorAll(".appointment").length;
+
+    // Handle scheduling by user
+    document.querySelectorAll(".set-schedule-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+            const parent = this.closest(".appointment");
+            const input = parent.querySelector(".schedule-input");
+            const scheduledTime = parent.querySelector(".scheduled-time");
+            const span = scheduledTime.querySelector("span");
+
+            if (input.value) {
+                span.textContent = new Date(input.value).toLocaleString();
+                scheduledTime.style.display = "block";
+                input.disabled = true;
+                this.disabled = true;
+            } else {
+                alert("Please select a valid date and time.");
+            }
+        });
+    });
+
+    // Handle sending Google Meet link
+    document.querySelectorAll(".send-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+            const input = this.previousElementSibling;
+            if (input.value.trim() !== "") {
+                this.textContent = "Link Sent";
+                this.disabled = true;
+                input.disabled = true;
+                alert("Google Meet link sent successfully!");
+            } else {
+                alert("Please enter a Google Meet link first.");
+            }
+        });
+    });
+
+    // Handle marking checked/completed
+    document.querySelectorAll(".check-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+            if (!this.classList.contains("completed")) {
+                this.textContent = "Completed";
+                this.classList.add("completed");
+                totalAppointments--;
+                totalCountElem.textContent = totalAppointments;
+            }
+        });
+    });
+</script> -->
+  </body>
+</html>

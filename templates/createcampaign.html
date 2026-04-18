@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Campaign - NGO</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 500px;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+        color: #444;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 14px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 8px rgba(102, 126, 234, 0.5);
+    }
+
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create a New Campaign</h2>
+    <form id="campaignForm" method="post" action="">
+        {%csrf_token%}
+        <label for="title">Campaign Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter campaign title" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Describe your campaign" required></textarea>
+
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date" required>
+
+        <label for="location">Location</label>
+        <input type="text" name="location" id="location" placeholder="Enter location" required>
+
+        <label for="type">Type of Campaign</label>
+        <select id="type" name="type" required>
+            <option value="">Select type</option>
+            <option value="health">Health Camp</option>
+            <option value="education">Education Drive</option>
+            <option value="environment">Environment Awareness</option>
+            <option value="charity">Charity Event</option>
+        </select>
+
+        <button type="submit">Create Campaign</button>
+    </form>
+</div>
+
+<!-- <script>
+    document.getElementById('campaignForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const title = document.getElementById('title').value;
+        const description = document.getElementById('description').value;
+        const date = document.getElementById('date').value;
+        const location = document.getElementById('location').value;
+        const type = document.getElementById('type').value;
+
+        if (title && description && date && location && type) {
+            alert(`✅ Campaign "${title}" created successfully!`);
+            document.getElementById('campaignForm').reset();
+        } else {
+            alert("⚠️ Please fill out all fields.");
+        }
+    });
+</script> -->
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NGO Campaigns</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+    }
+
+    /* Navbar */
+    nav {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    nav h1 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    /* Campaigns container */
+    .container {
+        padding: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    /* Campaign cards */
+    .card {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.3s, background-color 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    .card h2 {
+        margin-top: 0;
+        color: #fff;
+    }
+    .card p {
+        color: #f0f0f0;
+    }
+    .date {
+        font-size: 0.9rem;
+        color: #ddd;
+        margin-bottom: 10px;
+    }
+
+    /* Button */
+    .btn {
+        background-color: #45a049;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #3e8e41;
+    }
+    .joined {
+        background-color: gray;
+        cursor: default;
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <h1>Vaidya - Campaign</h1>
+</nav>
+
+<div class="container">
+    {% for campaign in campaign %}
+        <div class="card">
+            <h2>{{ campaign.title }}</h2>
+            <div class="date">📅 {{ campaign.date }}</div>
+            <p>{{ campaign.description }}</p>
+            <button class="btn" onclick="this.innerText='Joined'; this.classList.add('joined'); this.disabled=true;">Volunteer</button>
+        </div>
+    {% empty %}
+        <p>No campaigns available right now.</p>
+    {% endfor %}
+</div>
+
+<!-- <script>
+    const campaigns = [
+        {
+            title: "Free Health Check-up Camp",
+            date: "2025-08-20",
+            description: "Join us in offering free health check-ups to the community."
+        },
+        {
+            title: "Blood Donation Drive",
+            date: "2025-09-05",
+            description: "A campaign to collect blood donations for hospitals in need."
+        },
+        {
+            title: "Diabetes Awareness Seminar",
+            date: "2025-09-15",
+            description: "An educational seminar on preventing and managing diabetes."
+        }
+    ];
+
+    const container = document.getElementById("campaigns-container");
+
+    campaigns.forEach(campaign => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        const buttonId = `btn-${campaign.title.replace(/\s+/g, '-')}`;
+
+        card.innerHTML = `
+            <h2>${campaign.title}</h2>
+            <div class="date">📅 ${campaign.date}</div>
+            <p>${campaign.description}</p>
+            <button id="${buttonId}" class="btn">Volunteer</button>
+        `;
+
+        container.appendChild(card);
+
+        // Add event listener for the button
+        const btn = document.getElementById(buttonId);
+        btn.addEventListener("click", () => {
+            btn.innerText = "Joined";
+            btn.classList.add("joined");
+            btn.disabled = true;
+        });
+    });
+</script> -->
+
+</body>
+</html>

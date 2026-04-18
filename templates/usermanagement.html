@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+h1 {
+  text-align: center;
+}
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .container {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            color: #ffd700;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+       
+    </style>
+</head>
+<body>
+    
+
+   
+    <div>
+        <h1 style="background-color: rgba(255, 255, 255, 0.181);">Total registered user</h1>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="card">
+            <p>Total Doctors</p>
+            <h2 id="doctorCount">25</h2>
+        </div>
+        <div class="card">
+            <p>Total Users</p>
+            <h2 id="userCount">120</h2>
+        </div>
+        <div class="card">
+            <p>Total NGOs</p>
+            <h2 id="ngoCount">15</h2>
+        </div>
+    </div>
+
+    <script>
+        // Example: Dynamic values can be fetched from backend
+        let doctorCount = 25;
+        let userCount = 120;
+        let ngoCount = 15;
+
+        document.getElementById("doctorCount").textContent = doctorCount;
+        document.getElementById("userCount").textContent = userCount;
+        document.getElementById("ngoCount").textContent = ngoCount;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Doctor Tracking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #3498db;
+      color: white;
+      font-size: 18px;
+    }
+
+    tr:hover {
+      background: #f1f1f1;
+    }
+
+    .pending {
+      font-weight: bold;
+      color: red;
+    }
+
+    .complaints {
+      background: #fff;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .complaints h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .complaint-item {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border-left: 5px solid #e74c3c;
+    }
+
+    .complaint-item strong {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <header>NGO Doctor Tracking</header>
+  <div class="container">
+    <!-- Doctor Tracking Table -->
+    <table>
+      <tr>
+        <th>Doctor Name</th>
+        <th>Specialty</th>
+        <th>Patient</th>
+        <th>Appointments</th>
+      </tr>
+      {% if appointments_with_doctors %}
+      {% for item in appointments_with_doctors %}
+      <tr>
+        <td>{{item.doctor.full_name}}</td>
+        <td>{{item.doctor.specialisation}}</td>
+        <td>{{item.appointment.name}}</td>
+        <td class="pending">{{item.total_appointments}}</td>
+      </tr>
+      {%endfor%}
+      {%endif%}
+    </table>
+
+    <!-- Complaints Section -->
+    <!-- <div class="complaints">
+      <h2>Patient Complaints</h2>
+
+      <div class="complaint-item">
+        <strong>Against Dr. Priya Verma:</strong>
+        Patient reported long waiting times and lack of clear communication.
+      </div>
+
+      <div class="complaint-item">
+        <strong>Against Dr. Anil Sharma:</strong>
+        Patient mentioned incomplete prescription details.
+      </div>
+
+      <div class="complaint-item">
+        <strong>Against Dr. Rajesh Kumar:</strong>
+        Parent reported rushed consultation during child check-up.
+      </div>
+    </div> -->
+  </div>
+</body>
+</html>

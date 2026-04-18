@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Campaigns Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+
+        nav h1 {
+            font-size: 22px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffeb3b;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .active {
+            background-color: green;
+        }
+
+        .completed {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <h2>All NGO Campaigns</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campaign Name</th>
+                    <th>NGO Name</th>
+                    <th>Date</th>
+                    <th>Volunteers</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Clean City Drive</td>
+                    <td>Green Future NGO</td>
+                    <td>2025-08-20</td>
+                    <td>45</td>
+                    <td><span class="status active">Active</span></td>
+                </tr>
+                <tr>
+                    <td>Tree Plantation Week</td>
+                    <td>Earth Savers</td>
+                    <td>2025-07-15</td>
+                    <td>60</td>
+                    <td><span class="status completed">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>Blood Donation Camp</td>
+                    <td>Helping Hands</td>
+                    <td>2025-09-05</td>
+                    <td>30</td>
+                    <td><span class="status active">Active</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

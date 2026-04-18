@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Your Role</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: rgba(255,255,255,0.1);
+        padding: 2rem;
+        border-radius: 1rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+    }
+    h1 {
+        margin-bottom: 1.5rem;
+    }
+    .roles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    .role {
+        background: rgba(255,255,255,0.15);
+        padding: 1rem;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .role i {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .role:hover {
+        transform: translateY(-4px);
+        background: rgba(255,255,255,0.25);
+    }
+    .role input {
+        display: none;
+    }
+    .role.selected {
+        background: #45a049;
+    }
+    button {
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        background: #1247b9;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    button:hover {
+        background: #4CAF50;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Select Your Role</h1>
+    <div class="roles">
+       <a style="color: white;" href="signupCDA/"> <div class="role" data-role="citizen">
+            <i class="fas fa-user"></i>
+            Citizen / Patient
+        </div></a>
+      <a style="color: white;" href="signupDOCTORS/"> <div class="role" data-role="doctor">
+            <i class="fas fa-user-md"></i>
+            Doctor
+        </div></a>
+       <a style="color: white;" href="signupNGO/"> <div class="role" data-role="ngo">
+            <i class="fas fa-hand-holding-heart"></i>
+            NGO
+        </div></a>
+       <!-- <a style="color: white;" href="../loginADMIN/"> <div class="role" data-role="admin">
+            <i class="fas fa-user-shield"></i>
+            Admin
+        </div></a> -->
+    </div>
+    
+</div>
+<script>
+    const roles = document.querySelectorAll('.role');
+    const continueBtn = document.getElementById('continueBtn');
+    let selectedRole = null;
+
+    roles.forEach(role => {
+        role.addEventListener('click', () => {
+            roles.forEach(r => r.classList.remove('selected'));
+            role.classList.add('selected');
+            selectedRole = role.dataset.role;
+            continueBtn.disabled = false;
+        });
+    });
+
+    continueBtn.addEventListener('click', () => {
+        if (selectedRole) {
+            alert(`You selected: ${selectedRole}`);
+        }
+    });
+</script>
+</body>
+</html>

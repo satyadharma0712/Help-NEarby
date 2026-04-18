@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaidya - Citizen Home</title>
+<style>
+    body {
+        
+        background: url('https://static.vecteezy.com/system/resources/previews/004/578/683/non_2x/a-patient-consults-a-doctor-and-nurse-free-vector.jpg') no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    
+    }
+
+    /* Overlay for readability */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(242, 239, 239, 0.716);
+        z-index: -1;
+    }
+
+    /* Navbar */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 50px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        position: sticky;
+        top: 0;
+    }
+    nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li {
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+    }
+    nav ul li::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background: #45a049;
+        transition: width 0.3s;
+    }
+    nav ul li:hover::after {
+        width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+    .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        max-width: 600px;
+        background: #667eea25;
+    }
+
+    /* Buttons */
+    .buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .btn {
+        background: #45a049;
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background: #3d8b3d;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 { font-size: 2rem; }
+        nav { padding: 10px 20px; }
+        nav ul { gap: 15px; }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Vaidya</div>
+    <ul>
+        <a style="color:aliceblue" href="telemedicine/"><li>Telemedicine</li></a>
+        
+        <a style="color:aliceblue" href="campaign/"><li>Campaigns</li></a>
+        <a style="color:aliceblue" href="track/"><li>Track</li></a>
+           <a style="color:aliceblue" href="reportcrisis/"><li>Report Crisis</li></a>
+        <a style="color:aliceblue" href="../logout"><li>Log Out</li></a>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>Welcome to Vaidya</h1>
+    <p>Your trusted health platform to connect with doctors, access reports, and participate in health programs.</p>
+    <div class="buttons">
+        <a href="telemedicine/"><button class="btn">Telemedicine</button></a>
+        
+        <a href="campaign/"><button class="btn">Campaigns</button></a>
+        <a href="reportcrisis/"><button class="btn">Report Crisis</button></a>
+        <a href="track/"><button class="btn">Track</button></a>
+    </div>
+</div>
+
+</body>
+</html>

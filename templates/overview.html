@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NGO Campaign Overview</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+    }
+
+    header {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .campaign-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .campaign-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        transition: transform 0.3s ease, background 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .campaign-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .campaign-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #ffd166;
+    }
+
+    .campaign-date {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+        color: #f0f0f0;
+    }
+
+    .campaign-desc {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .volunteers {
+        background: #45a049;
+        padding: 8px 15px;
+        border-radius: 8px;
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+<header>NGO Campaign Overview</header>
+
+<div class="container">
+    {% for campaign in campaign %}
+        <div class="card">
+            <h2>{{ campaign.title }}</h2>
+            <div class="date">📅 {{ campaign.date }}</div>
+            <p>{{ campaign.description }}</p>
+            <!-- <button class="btn" onclick="this.innerText='Joined'; this.classList.add('joined'); this.disabled=true;">Volunteer</button> -->
+        </div>
+    {% empty %}
+        <p>No campaigns available right now.</p>
+    {% endfor %}
+</div>
+
+<!-- <script>
+    const campaigns = [
+        {
+            name: "Free Health Checkup Camp",
+            date: "2025-09-01",
+            desc: "Providing free health checkups and medicines to underprivileged communities.",
+            volunteers: 25
+        },
+        {
+            name: "Blood Donation Drive",
+            date: "2025-09-15",
+            desc: "Encouraging citizens to donate blood and save lives.",
+            volunteers: 40
+        },
+        {
+            name: "Medical Awareness Seminar",
+            date: "2025-10-01",
+            desc: "Educating people about hygiene and preventive healthcare.",
+            volunteers: 15
+        }
+    ];
+
+    const campaignGrid = document.getElementById("campaignGrid");
+
+    campaigns.forEach(campaign => {
+        const card = document.createElement("div");
+        card.classList.add("campaign-card");
+        card.innerHTML = `
+            <div class="campaign-title">${campaign.name}</div>
+            <div class="campaign-date">📅 ${campaign.date}</div>
+            <div class="campaign-desc">${campaign.desc}</div>
+            <div class="volunteers">👥 ${campaign.volunteers} Volunteers</div>
+        `;
+        campaignGrid.appendChild(card);
+    });
+</script> -->
+
+</body>
+</html>
